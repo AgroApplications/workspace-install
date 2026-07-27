@@ -1,0 +1,24 @@
+---
+alwaysApply: true
+---
+
+# Python 3.12 Project Standards
+
+- Always use Python 3.12 as the target runtime.
+- Use `type` statement for type aliases (3.12+): `type Vector = list[float]`.
+- Use generic syntax on classes and functions with `[T]` (PEP 695, 3.12+) instead of `TypeVar`.
+- Use f-strings everywhere; leverage the relaxed f-string parser (3.12+) that allows backslashes and comments inside.
+- Use `typing` module built-in generics (e.g. `list[str]`, `dict[str, int]`) available since 3.9+.
+- Use `match`/`case` statements (structural pattern matching) where appropriate (3.10+).
+- Use `ExceptionGroup` and `except*` for concurrent error handling where applicable (3.11+).
+- Use `tomllib` from the standard library for reading TOML files (3.11+).
+- Use `TaskGroup` from `asyncio` for structured concurrency (3.11+).
+- Use `itertools.batched()` for chunking iterables (3.12+).
+- Use `Path.walk()` instead of `os.walk()` (3.12+).
+- Type hints are mandatory for all function signatures and class attributes.
+- Use `mypy --strict` for type checking.
+- Use `ruff` for linting and formatting (replaces flake8, isort, black).
+- Use `pytest` as the test framework with `pytest-asyncio` for async tests.
+- Use `uv` as the package and project manager.
+- Target line length: 88 characters (ruff default).
+- Follow PEP 8 naming conventions strictly.

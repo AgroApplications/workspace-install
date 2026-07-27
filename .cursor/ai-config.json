@@ -1,0 +1,66 @@
+{
+    "model": "gpt-4",
+    "temperature": 0.1,
+    "maxTokens": 4000,
+    "contextWindow": 8000,
+    "features": {
+        "codeCompletion": true,
+        "codeExplanation": true,
+        "codeRefactoring": true,
+        "bugFinding": true,
+        "testGeneration": true,
+        "documentationGeneration": true
+    },
+    "codeStyle": {
+        "language": "python",
+        "version": "3.12",
+        "style": "pep8",
+        "formatter": "ruff",
+        "linter": "ruff",
+        "typeChecker": "mypy"
+    },
+    "projectContext": {
+        "framework": "fastapi",
+        "packageManager": "uv",
+        "containerization": "docker",
+        "testing": "pytest",
+        "cicd": ["gitlab", "azure", "makefile"]
+    },
+    "prompts": {
+        "codeReview": "Review this code for Python best practices, type safety, and project conventions",
+        "refactor": "Refactor this code to be more maintainable and follow project patterns",
+        "test": "Generate comprehensive pytest tests for this code",
+        "docs": "Generate clear docstrings and documentation for this code"
+    },
+    "excludePatterns": [
+        "**/__pycache__/**",
+        "**/*.pyc",
+        ".venv/**",
+        ".mypy_cache/**",
+        ".pytest_cache/**",
+        "dist/**",
+        "build/**",
+        "*.egg-info/**",
+        "uv.lock"
+    ],
+    "documentationIndex": {
+        "enabled": true,
+        "path": ".cursor/index_docs/index_docs.json",
+        "categories": [
+            "Ubuntu",
+            "Programming",
+            "Dependency Management",
+            "DevOps",
+            "Kubernetes",
+            "HashiCorp",
+            "AWS",
+            "GCP",
+            "Azure",
+            "DataOps",
+            "MLOps",
+            "Project Documentation"
+        ],
+        "searchEnabled": true,
+        "contextAware": true
+    }
+}

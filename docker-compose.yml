@@ -1,0 +1,105 @@
+services:
+  dev:
+    build:
+      context: .
+      target: development
+    container_name: python-dev-env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/workspace
+      - dev-venv:/workspace/.venv
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      db:
+        condition: service_healthy
+        required: false
+      redis:
+        condition: service_healthy
+        required: false
+    restart: unless-stopped
+
+  prod:
+    build:
+      context: .
+      target: production
+    container_name: python-prod-env
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      db:
+        condition: service_healthy
+        required: false
+      redis:
+        condition: service_healthy
+        required: false
+    restart: unless-stopped
+
+  test:
+    build:
+      context: .
+      target: testing
+    container_name: python-test-env
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+
+  jupyter:
+    build:
+      context: .
+      target: development
+    container_name: python-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+      - dev-venv:/workspace/.venv
+    command: >
+      uv run jupyter lab
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --allow-root
+      --NotebookApp.token=''
+
+  db:
+    image: postgres:16-alpine
+    container_name: python-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: python_dev
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U developer -d python_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: python-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  dev-venv:
+  postgres-data:
+  redis-data:

@@ -1,0 +1,190 @@
+{
+  "name": "PythonENV-NSV MCP Configuration",
+  "version": "1.0.0",
+  "description": "Model Context Protocol configuration for PythonENV-NSV development environment",
+  "context": {
+    "project": {
+      "name": "PythonENV-NSV",
+      "type": "python-development-template",
+      "version": "0.1.0",
+      "description": "Python 3.12 development template with uv, Docker, FastAPI, and comprehensive CI/CD setup"
+    },
+    "environment": {
+      "python": "3.12",
+      "packageManager": "uv",
+      "containerization": "docker",
+      "framework": "fastapi",
+      "testing": "pytest",
+      "linting": "ruff",
+      "typeChecking": "mypy"
+    },
+    "tools": {
+      "development": [
+        "uv",
+        "docker",
+        "docker-compose",
+        "ruff",
+        "mypy",
+        "pytest",
+        "pre-commit"
+      ],
+      "ci-cd": [
+        "gitlab-ci",
+        "azure-devops",
+        "makefile"
+      ],
+      "documentation": [
+        "mkdocs",
+        "jupyter",
+        "quarto"
+      ]
+    },
+    "patterns": {
+      "codeStyle": "pep8",
+      "typeHints": "required",
+      "testing": "pytest",
+      "dependencyManagement": "uv",
+      "containerization": "multi-stage-docker"
+    }
+  },
+  "capabilities": {
+    "codeGeneration": {
+      "enabled": true,
+      "languages": [
+        "python"
+      ],
+      "frameworks": [
+        "fastapi",
+        "pytest"
+      ],
+      "patterns": [
+        "async",
+        "type-hints",
+        "pydantic-models"
+      ]
+    },
+    "codeReview": {
+      "enabled": true,
+      "checks": [
+        "pep8",
+        "type-safety",
+        "security",
+        "performance"
+      ],
+      "tools": [
+        "ruff",
+        "mypy",
+        "bandit"
+      ]
+    },
+    "testing": {
+      "enabled": true,
+      "framework": "pytest",
+      "coverage": true,
+      "fixtures": true
+    },
+    "documentation": {
+      "enabled": true,
+      "formats": [
+        "markdown",
+        "docstrings",
+        "api-docs"
+      ],
+      "generation": "automatic"
+    }
+  },
+  "workflows": {
+    "development": {
+      "setup": [
+        "uv sync",
+        "uv run pre-commit install",
+        "docker-compose up dev"
+      ],
+      "testing": [
+        "uv run pytest",
+        "uv run ruff check .",
+        "uv run mypy src/"
+      ],
+      "deployment": [
+        "uv build",
+        "docker build -t pythonenv-nsv .",
+        "docker-compose up prod"
+      ]
+    },
+    "ci-cd": {
+      "pipeline": "make ci-pipeline",
+      "stages": [
+        "lint",
+        "test",
+        "security",
+        "build"
+      ],
+      "platforms": [
+        "gitlab",
+        "azure",
+        "local"
+      ]
+    }
+  },
+  "ai": {
+    "assistant": {
+      "name": "PythonENV-NSV AI Assistant",
+      "context": "python-development",
+      "capabilities": [
+        "code-generation",
+        "code-review",
+        "test-generation",
+        "documentation",
+        "refactoring",
+        "debugging"
+      ],
+      "guidelines": {
+        "followProjectRules": true,
+        "useUv": true,
+        "maintainTypeHints": true,
+        "writeTests": true,
+        "followPep8": true
+      }
+    },
+    "prompts": {
+      "codeReview": "Review this code for Python best practices, type safety, and project conventions",
+      "refactor": "Refactor this code to be more maintainable and follow project patterns",
+      "test": "Generate comprehensive pytest tests for this code",
+      "docs": "Generate clear docstrings and documentation for this code",
+      "debug": "Help debug this issue with detailed analysis and solutions"
+    }
+  },
+  "integrations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+        "python.terminal.activateEnvironment": true
+      }
+    },
+    "cursor": {
+      "aiConfig": ".cursor/ai-config.json",
+      "rules": ".cursor/rules.md",
+      "snippets": ".cursor/snippets.json",
+      "workspace": ".cursor/workspace.json"
+    },
+    "docker": {
+      "composeFile": "docker-compose.yml",
+      "dockerfile": "Dockerfile",
+      "devContainer": ".devcontainer/devcontainer.json"
+    }
+  },
+  "metadata": {
+    "created": "2024-09-26",
+    "updated": "2024-09-26",
+    "author": "NonSenseVision",
+    "license": "MIT",
+    "repository": "https://github.com/NonSenseVision/PythonENV-NSV",
+    "documentation": "https://github.com/NonSenseVision/PythonENV-NSV/blob/main/README.md"
+  }
+}

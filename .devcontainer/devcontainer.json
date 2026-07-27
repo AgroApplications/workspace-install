@@ -1,0 +1,47 @@
+{
+    "name": "PythonENV-NSV Dev Container",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": "..",
+        "target": "development"
+    },
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [8000, 8888, 5432, 6379],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+                "python.terminal.activateEnvironment": true,
+                "python.analysis.typeCheckingMode": "strict",
+                "python.testing.pytestEnabled": true,
+                "python.testing.pytestArgs": ["tests"],
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "explicit",
+                    "source.fixAll.ruff": "explicit"
+                },
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff"
+                }
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.debugpy",
+                "charliermarsh.ruff",
+                "ms-toolsai.jupyter",
+                "ms-azuretools.vscode-docker",
+                "redhat.vscode-yaml",
+                "davidanson.vscode-markdownlint",
+                "eamodio.gitlens",
+                "usernamehw.errorlens",
+                "gruntfuggly.todo-tree"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "postCreateCommand": "uv sync",
+    "remoteUser": "root"
+}

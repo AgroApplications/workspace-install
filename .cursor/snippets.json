@@ -1,0 +1,86 @@
+{
+    "Python FastAPI Endpoint": {
+        "prefix": "fastapi-endpoint",
+        "body": [
+            "@app.${1:get}(\"/${2:endpoint}\")",
+            "async def ${3:function_name}(${4:params}) -> ${5:ResponseModel}:",
+            "    \"\"\"${6:Description}\"\"\"",
+            "    try:",
+            "        ${7:# Implementation}",
+            "        return ${8:response}",
+            "    except Exception as e:",
+            "        raise HTTPException(status_code=500, detail=str(e))"
+        ],
+        "description": "FastAPI endpoint template"
+    },
+    "Pydantic Model": {
+        "prefix": "pydantic-model",
+        "body": [
+            "class ${1:ModelName}(BaseModel):",
+            "    \"\"\"${2:Model description}\"\"\"",
+            "    ${3:field}: ${4:type}",
+            "    ",
+            "    class Config:",
+            "        \"\"\"Pydantic configuration\"\"\"",
+            "        json_encoders = {",
+            "            datetime: lambda v: v.isoformat()",
+            "        }"
+        ],
+        "description": "Pydantic model template"
+    },
+    "Pytest Test Function": {
+        "prefix": "pytest-test",
+        "body": [
+            "def test_${1:function_name}(${2:fixtures}):",
+            "    \"\"\"Test ${3:description}\"\"\"",
+            "    # Arrange",
+            "    ${4:setup}",
+            "    ",
+            "    # Act",
+            "    ${5:action}",
+            "    ",
+            "    # Assert",
+            "    ${6:assertions}"
+        ],
+        "description": "Pytest test function template"
+    },
+    "Async Pytest Test": {
+        "prefix": "pytest-async",
+        "body": [
+            "@pytest.mark.asyncio",
+            "async def test_${1:async_function}(${2:fixtures}):",
+            "    \"\"\"Test ${3:description}\"\"\"",
+            "    # Arrange",
+            "    ${4:setup}",
+            "    ",
+            "    # Act",
+            "    ${5:result} = await ${6:async_call}",
+            "    ",
+            "    # Assert",
+            "    ${7:assertions}"
+        ],
+        "description": "Async pytest test template"
+    },
+    "uv Add Dependency": {
+        "prefix": "uv-add",
+        "body": [
+            "uv add ${1:package_name}${2: --dev}"
+        ],
+        "description": "Add uv dependency"
+    },
+    "Docker Multi-stage": {
+        "prefix": "docker-multistage",
+        "body": [
+            "# ${1:Stage name}",
+            "FROM python:3.12-slim AS ${2:stage}",
+            "COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/",
+            "WORKDIR /app",
+            "COPY pyproject.toml uv.lock ./",
+            "RUN --mount=type=cache,target=/root/.cache/uv \\",
+            "    uv sync --frozen ${3:--no-dev}",
+            "COPY . .",
+            "${4:# Additional commands}"
+        ],
+        "description": "Docker multi-stage template with uv"
+    }
+}

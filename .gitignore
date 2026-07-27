@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+.env/
+.envrc
+.python-version
+
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Test / Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+*.tmp
+
+# Secrets
+*.env
+*.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+credentials.json
+
+# Data
+data/
+datasets/
+models/
+*.parquet
+*.csv
+*.zip
+*.gz
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Profiling
+*.stats
+profile.stats
+
+# Database backups
+backup_*.sql
+
+# uv
+.uv/

@@ -1,0 +1,77 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.pyd
+.venv/
+venv/
+.env/
+
+# Build
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Test / Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+.devcontainer/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docs
+docs/
+*.md
+
+# Setup scripts
+mac-setup/
+ubuntu-setup/
+
+# Data
+data/
+datasets/
+models/
+*.parquet
+*.csv
+*.zip
+*.gz
+
+# Secrets
+*.env
+*.env.*
+secrets/
+*.pem
+*.key
+credentials.json
+
+# Logs
+logs/
+*.log
+*.tmp
+
+# uv cache
+.uv/
+
+# Docker
+docker-compose.yml
+docker-compose*.yml
+Dockerfile
+.dockerignore

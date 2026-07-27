@@ -1,0 +1,86 @@
+{
+    "name": "PythonENV-NSV",
+    "description": "Python 3.12 Development Template with uv, Docker, and FastAPI",
+    "version": "0.1.0",
+    "python": {
+        "version": "3.12",
+        "packageManager": "uv",
+        "virtualEnvPath": ".venv",
+        "testFramework": "pytest",
+        "linter": "ruff",
+        "formatter": "ruff",
+        "typeChecker": "mypy"
+    },
+    "docker": {
+        "enabled": true,
+        "composeFile": "docker-compose.yml",
+        "devContainer": ".devcontainer/devcontainer.json"
+    },
+    "ci": {
+        "platforms": ["gitlab", "azure", "makefile"],
+        "localPipeline": "make ci-pipeline"
+    },
+    "folders": [
+        {
+            "name": "Source Code",
+            "path": "./src",
+            "description": "Main application source code"
+        },
+        {
+            "name": "Tests",
+            "path": "./tests",
+            "description": "Unit and integration tests"
+        },
+        {
+            "name": "Docker",
+            "path": "./docker",
+            "description": "Docker configuration files"
+        },
+        {
+            "name": "CI/CD",
+            "path": "./",
+            "description": "CI/CD configuration files",
+            "include": ["*.yml", "Makefile", ".gitlab-ci.yml", "azure-pipelines.yml"]
+        }
+    ],
+    "tasks": {
+        "install": "uv sync",
+        "test": "uv run pytest",
+        "lint": "uv run ruff check .",
+        "format": "uv run ruff format .",
+        "typecheck": "uv run mypy src/",
+        "dev": "uv run uvicorn src.main:app --reload",
+        "docker-dev": "docker-compose up dev",
+        "ci": "make ci-pipeline"
+    },
+    "extensions": {
+        "recommended": [
+            "ms-python.python",
+            "ms-python.debugpy",
+            "ms-toolsai.jupyter",
+            "ms-azuretools.vscode-docker",
+            "davidanson.vscode-markdownlint",
+            "redhat.vscode-yaml"
+        ]
+    },
+    "documentation": {
+        "indexPath": ".cursor/index_docs/index_docs.json",
+        "enabled": true,
+        "categories": [
+            "Ubuntu",
+            "Programming",
+            "Dependency Management",
+            "DevOps",
+            "Kubernetes",
+            "HashiCorp",
+            "AWS",
+            "GCP",
+            "Azure",
+            "DataOps",
+            "MLOps",
+            "Project Documentation"
+        ],
+        "searchEnabled": true,
+        "contextAware": true
+    }
+}
