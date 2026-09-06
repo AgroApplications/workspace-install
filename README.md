@@ -64,6 +64,7 @@ CursorTemplate/
 ├── docs/                 # Documentation
 ├── mac-setup/            # macOS setup automation
 ├── ubuntu-setup/         # Ubuntu setup automation
+├── wsl-setup/            # WSL 2 setup (ubuntu-setup mirror, exec/ split)
 ├── src/                  # Source code
 │   ├── __init__.py
 │   └── main.py           # FastAPI application
@@ -115,6 +116,7 @@ Automated setup scripts for development machines:
 
 - **macOS**: `cd mac-setup && make install`
 - **Ubuntu**: `cd ubuntu-setup && make install`
+- **WSL 2**: `cd wsl-setup && make install`
 
 ## Why uv?
 
